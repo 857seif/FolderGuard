@@ -456,10 +456,9 @@ C:\ProgramData\FolderGuard\
 
 <div align="center">
 
-## 💀 Built for the red team, by the red team.
 
 ```
-C:\ProgramData\FolderGuard\> ████████████████████████████
+C:\ProgramData\FolderGuard\>
                           Admin Required | Sysmon Dependency
 ```
 
