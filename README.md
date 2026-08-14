@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/yourusername/FolderGuard/main/assets/banner.png" width="800" alt="FolderGuard Ultimate Banner">
+
 
 # 🛡️ FolderGuard Ultimate
 ### RenPy & Amatera Stealer Killer | Real-Time Windows Defense
