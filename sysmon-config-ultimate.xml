@@ -1,0 +1,109 @@
+<Sysmon schemaversion="4.90">
+  <HashAlgorithms>SHA256</HashAlgorithms>
+
+  <EventFiltering>
+
+    <ProcessCreate onmatch="exclude">
+      <Image condition="is">C:\Windows\System32\SearchIndexer.exe</Image>
+      <Image condition="is">C:\Windows\System32\RuntimeBroker.exe</Image>
+      <Image condition="is">C:\Windows\System32\backgroundTaskHost.exe</Image>
+      <Image condition="is">C:\Windows\System32\conhost.exe</Image>
+      <Image condition="is">C:\Windows\System32\dllhost.exe</Image>
+      <Image condition="is">C:\Windows\System32\wbem\WmiPrvSE.exe</Image>
+      <Image condition="is">C:\Windows\System32\taskhostw.exe</Image>
+      <Image condition="is">C:\Windows\System32\sihost.exe</Image>
+      <Image condition="is">C:\Windows\System32\fontdrvhost.exe</Image>
+      <Image condition="is">C:\Windows\System32\dwm.exe</Image>
+      <Image condition="is">C:\Windows\System32\csrss.exe</Image>
+      <Image condition="is">C:\Windows\System32\smss.exe</Image>
+      <Image condition="is">C:\Windows\System32\wininit.exe</Image>
+      <Image condition="is">C:\Windows\System32\services.exe</Image>
+      <Image condition="is">C:\Windows\System32\lsass.exe</Image>
+      <Image condition="is">C:\Windows\System32\svchost.exe</Image>
+      <ParentImage condition="is">C:\Windows\System32\svchost.exe</ParentImage>
+    </ProcessCreate>
+
+    <CreateRemoteThread onmatch="include">
+      <TargetImage condition="contains">chrome.exe</TargetImage>
+      <TargetImage condition="contains">msedge.exe</TargetImage>
+      <TargetImage condition="contains">msedgewebview2.exe</TargetImage>
+      <TargetImage condition="contains">opera.exe</TargetImage>
+      <TargetImage condition="contains">brave.exe</TargetImage>
+      <TargetImage condition="contains">firefox.exe</TargetImage>
+      <TargetImage condition="contains">vivaldi.exe</TargetImage>
+      <TargetImage condition="contains">Discord.exe</TargetImage>
+      <TargetImage condition="contains">DiscordPTB.exe</TargetImage>
+      <TargetImage condition="contains">DiscordCanary.exe</TargetImage>
+      <TargetImage condition="contains">lsass.exe</TargetImage>
+      <TargetImage condition="contains">explorer.exe</TargetImage>
+    </CreateRemoteThread>
+
+    <ImageLoad onmatch="include">
+      <ImageLoaded condition="contains">\Temp\</ImageLoaded>
+      <ImageLoaded condition="contains">\AppData\Local\Temp\</ImageLoaded>
+      <ImageLoaded condition="contains">\AppData\Roaming\</ImageLoaded>
+      <ImageLoaded condition="contains">\Users\Public\</ImageLoaded>
+    </ImageLoad>
+
+    <ProcessAccess onmatch="include">
+      <TargetImage condition="is">C:\Windows\System32\lsass.exe</TargetImage>
+    </ProcessAccess>
+
+    <ProcessAccess onmatch="include">
+      <TargetImage condition="contains">opera.exe</TargetImage>
+      <TargetImage condition="contains">chrome.exe</TargetImage>
+      <TargetImage condition="contains">msedge.exe</TargetImage>
+      <TargetImage condition="contains">brave.exe</TargetImage>
+      <TargetImage condition="contains">firefox.exe</TargetImage>
+      <TargetImage condition="contains">Discord.exe</TargetImage>
+      <GrantedAccess condition="is">0x1410</GrantedAccess>
+    </ProcessAccess>
+
+    <ProcessAccess onmatch="include">
+      <GrantedAccess condition="is">0x1fffff</GrantedAccess>
+    </ProcessAccess>
+
+    <FileCreate onmatch="include">
+      <TargetFilename condition="contains">\Login Data</TargetFilename>
+      <TargetFilename condition="contains">\Local State</TargetFilename>
+      <TargetFilename condition="contains">\Web Data</TargetFilename>
+      <TargetFilename condition="contains">\Cookies</TargetFilename>
+      <TargetFilename condition="contains">\Network\Cookies</TargetFilename>
+      <TargetFilename condition="contains">\discord\Local Storage\leveldb</TargetFilename>
+      <TargetFilename condition="contains">\discordptb\Local Storage\leveldb</TargetFilename>
+      <TargetFilename condition="contains">\discordcanary\Local Storage\leveldb</TargetFilename>
+      <TargetFilename condition="contains">\Google\Chrome\User Data</TargetFilename>
+      <TargetFilename condition="contains">\Microsoft\Edge\User Data</TargetFilename>
+      <TargetFilename condition="contains">\BraveSoftware\Brave-Browser\User Data</TargetFilename>
+      <TargetFilename condition="contains">\Opera Software\</TargetFilename>
+      <TargetFilename condition="contains">\Mozilla\Firefox\Profiles\</TargetFilename>
+      <TargetFilename condition="contains">\Wallet</TargetFilename>
+      <TargetFilename condition="contains">\Keystore</TargetFilename>
+      <TargetFilename condition="contains">MetaMask</TargetFilename>
+      <TargetFilename condition="contains">Exodus</TargetFilename>
+      <TargetFilename condition="contains">Electrum</TargetFilename>
+      <TargetFilename condition="contains">\Telegram Desktop\tdata</TargetFilename>
+      <TargetFilename condition="contains">\Local Extension Settings\</TargetFilename>
+    </FileCreate>
+
+    <NetworkConnect onmatch="include">
+      <Image condition="contains">\Temp\</Image>
+      <Image condition="contains">\AppData\Local\Temp\</Image>
+      <Image condition="contains">\AppData\Roaming\</Image>
+      <Image condition="contains">\AppData\Local\</Image>
+    </NetworkConnect>
+
+    <RegistryEvent onmatch="include">
+      <TargetObject condition="contains">\CurrentVersion\Run</TargetObject>
+      <TargetObject condition="contains">\CurrentVersion\RunOnce</TargetObject>
+      <TargetObject condition="contains">\CurrentVersion\Policies\Explorer\Run</TargetObject>
+      <TargetObject condition="contains">\Windows\CurrentVersion\Explorer\User Shell Folders</TargetObject>
+      <TargetObject condition="contains">\Windows\CurrentVersion\Explorer\Shell Folders</TargetObject>
+    </RegistryEvent>
+
+    
+    <ProcessTampering onmatch="exclude">
+    </ProcessTampering>
+
+  </EventFiltering>
+</Sysmon>
